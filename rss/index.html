@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Revactor Blog</title>
+    <link>http://revactor.org/rss/</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+    <description>A blog about Revactor, an Actor framework for Ruby</description>
+    
+    
+        <item>
+          <title>Revactor blog buzz</title>
+          <description>&lt;p&gt;I&amp;#8217;m glad to see Revactor&amp;#8217;s starting to make a splash in the Ruby blogging community.  Here are a few mentions of it:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;RubyZone&lt;/strong&gt;: &lt;a href=&quot;http://ruby.dzone.com/articles/interview-revactor-developer-t&quot;&gt;Interview With Revactor Developer Tony Arcieri&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;An interview with yours truly about Revactor, its goals, and concurrent programming in general.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;On Ruby&lt;/strong&gt;: &lt;a href=&quot;http://on-ruby.blogspot.com/2008/01/ruby-concurrency-with-actors.html&quot;&gt;Ruby Concurrency with Actors&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Another article by the same author, provides a more broadened perspective on the concurrency landscape in Ruby, including Erlang creator Joe Armstrong&amp;#8217;s take on libraries like Revactor which try to add Erlangy features to what&amp;#8217;s in the end an imperative language with mutable state.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Startrader&amp;#8217;s Weblog&lt;/strong&gt;: &lt;a href=&quot;http://startrader.wordpress.com/tag/revactor/&quot;&gt;Revactor: Poor Name, Great Idea&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Well, can&amp;#8217;t blame you on the name, it&amp;#8217;s one of those ones I picked somewhat capriciously that stuck in my head to the point that I couldn&amp;#8217;t shake it.  But if _why can call his tag soup library Hpricot, then I can call my Actor library Revactor, damn it!  Kidding, of course&amp;#8230;&lt;/p&gt;
+&lt;p&gt;That said, one of the main criticisms of Revactor in the article (beyond the name) was the lack of support for linking, which was addressed as of an hour ago.  Dig in!&lt;/p&gt;</description>
+          <pubDate>Wed, 30 Jan 2008 00:00:14 GMT</pubDate>
+          <guid>http://revactor.org/blog/archives/2008/01/30/revactor-blog-buzz/</guid>
+          <link>http://revactor.org/blog/archives/2008/01/30/revactor-blog-buzz/</link>
+        </item>
+    
+        <item>
+          <title>Revactor 0.1.2 released</title>
+          <description>&lt;p&gt;Following official &lt;span class=&quot;caps&quot;&gt;DHH&lt;/span&gt; release guidelines, Revactor 0.1.1 saw a stealth release followed by an official 0.1.2 the next day.  Never mind grabbing 0.1.1, you can head straight for 0.1.2.&lt;/p&gt;
+&lt;p&gt;So what&amp;#8217;s new?  Well, now wherever you are inside your program, you&amp;#8217;re in the scope of an Actor.  This release brings with it both thread-specific schedulers and ones that work from toplevel scope.  There&amp;#8217;s no longer an &amp;#8220;Actor world&amp;#8221; in your Ruby programs, and instead you can use Actors anywhere.&lt;/p&gt;
+&lt;p&gt;This release also brings with it Erlangy exception handling using a technique called linking.  Now you can group interdependent Actors together and easily implement supervision trees to restart the whole group in the event of an uncaught exception.  For more information, see the Handling Exceptions section of the &lt;a href=&quot;http://doc.revactor.org/files/README.html&quot;&gt;Revactor &lt;span class=&quot;caps&quot;&gt;README&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Revactor is available as a gem (Ruby 1.9 only):&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;gem install revactor&lt;/em&gt;&lt;/p&gt;</description>
+          <pubDate>Tue, 29 Jan 2008 22:45:18 GMT</pubDate>
+          <guid>http://revactor.org/blog/archives/2008/01/29/revactor-0-1-2-released/</guid>
+          <link>http://revactor.org/blog/archives/2008/01/29/revactor-0-1-2-released/</link>
+        </item>
+    
+        <item>
+          <title>Revactor released</title>
+          <description>&lt;p&gt;I&amp;#8217;m pleased to announce the initial public availability of Revactor, an Actor framework for Ruby 1.9.  The Actor model has seen increasing popularity in languages like Erlang and Scala.  Revactor adds asynchronous message passing to the Fibers mechanism, easing the development of concurrent programs using them.  You can read more about the Actor model here:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://revactor.org/philosophy/&quot;&gt;http://revactor.org/philosophy/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Revactor also includes a high performance sockets &lt;span class=&quot;caps&quot;&gt;API&lt;/span&gt;, largely compatible with Ruby&amp;#8217;s own, but which also seamlessly interoperate with the Actor &lt;span class=&quot;caps&quot;&gt;API&lt;/span&gt;.  Using this approach means you can simultaneously process messages from both sockets and other Actors.  Furthermore, with a small amount of monkeypatching it&amp;#8217;s able to run Mongrel, using Actors instead of threads as the underlying concurrency mechanism.  Initial tests of the performance of Mongrel on top of Revactor surpass the threaded version.&lt;/p&gt;
+&lt;p&gt;Revactor is available as a gem and can be installed with:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;gem install revactor&lt;/em&gt;&lt;/p&gt;</description>
+          <pubDate>Mon, 21 Jan 2008 00:08:16 GMT</pubDate>
+          <guid>http://revactor.org/blog/archives/2008/01/21/revactor-released/</guid>
+          <link>http://revactor.org/blog/archives/2008/01/21/revactor-released/</link>
+        </item>
+    
+    
+  </channel>
+</rss>
+

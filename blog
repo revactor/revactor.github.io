@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+  <head>
+    <title>Revactor Blog</title>
+    <link href="/rss/" rel="alternate" title="RSS" type="application/rss+xml" />
+    <link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+  <body>
+    <div id="page">
+      <div id="header">
+  <h1><a href="/"><span>Revactor</span></a></h1>
+  <h2>Network programming for a concurrent world</h2>
+</div>
+      <div id="main">
+        <div id="sidebar-wrapper">
+          <div id="sidebar">
+            <div>
+<p><b>Recent Entries</b></p>
+<ul>
+	<li><a href="/blog/archives/2008/01/30/revactor-blog-buzz/">Revactor blog buzz</a></li>
+	<li><a href="/blog/archives/2008/01/29/revactor-0-1-2-released/">Revactor 0.1.2 released</a></li>
+	<li><a href="/blog/archives/2008/01/21/revactor-released/">Revactor released</a></li>
+</ul>
+</div>
+<div>
+<p><a href="/blog/archives/">Archives&#8230;</a></p>
+</div>
+<div>
+<p><b>Syndicate</b><br /></p>
+<p><img src="/images/feed.gif" style="vertical-align: middle" /> <a href="/rss/"><span class="caps">RSS</span> Feed</a></p>
+</div>
+          </div>
+        </div>
+
+        <div id="content-wrapper">
+          <div id="content">
+            <h2>Revactor Blog</h2>
+            
+
+
+<div class="first entry">
+  <h3><a href="/blog/archives/2008/01/30/revactor-blog-buzz/">Revactor blog buzz</a></h3>
+  <p class="info">Posted by Tony Arcieri on Jan 30, 2008</p>
+  <p>I&#8217;m glad to see Revactor&#8217;s starting to make a splash in the Ruby blogging community.  Here are a few mentions of it:</p>
+<p><strong>RubyZone</strong>: <a href="http://ruby.dzone.com/articles/interview-revactor-developer-t">Interview With Revactor Developer Tony Arcieri</a></p>
+<p>An interview with yours truly about Revactor, its goals, and concurrent programming in general.</p>
+<p><strong>On Ruby</strong>: <a href="http://on-ruby.blogspot.com/2008/01/ruby-concurrency-with-actors.html">Ruby Concurrency with Actors</a></p>
+<p>Another article by the same author, provides a more broadened perspective on the concurrency landscape in Ruby, including Erlang creator Joe Armstrong&#8217;s take on libraries like Revactor which try to add Erlangy features to what&#8217;s in the end an imperative language with mutable state.</p>
+<p><strong>Startrader&#8217;s Weblog</strong>: <a href="http://startrader.wordpress.com/tag/revactor/">Revactor: Poor Name, Great Idea</a></p>
+<p>Well, can&#8217;t blame you on the name, it&#8217;s one of those ones I picked somewhat capriciously that stuck in my head to the point that I couldn&#8217;t shake it.  But if _why can call his tag soup library Hpricot, then I can call my Actor library Revactor, damn it!  Kidding, of course&#8230;</p>
+<p>That said, one of the main criticisms of Revactor in the article (beyond the name) was the lack of support for linking, which was addressed as of an hour ago.  Dig in!</p>
+  
+</div>
+
+
+
+<div class="entry">
+  <h3><a href="/blog/archives/2008/01/29/revactor-0-1-2-released/">Revactor 0.1.2 released</a></h3>
+  <p class="info">Posted by Tony Arcieri on Jan 29, 2008</p>
+  <p>Following official <span class="caps">DHH</span> release guidelines, Revactor 0.1.1 saw a stealth release followed by an official 0.1.2 the next day.  Never mind grabbing 0.1.1, you can head straight for 0.1.2.</p>
+<p>So what&#8217;s new?  Well, now wherever you are inside your program, you&#8217;re in the scope of an Actor.  This release brings with it both thread-specific schedulers and ones that work from toplevel scope.  There&#8217;s no longer an &#8220;Actor world&#8221; in your Ruby programs, and instead you can use Actors anywhere.</p>
+<p>This release also brings with it Erlangy exception handling using a technique called linking.  Now you can group interdependent Actors together and easily implement supervision trees to restart the whole group in the event of an uncaught exception.  For more information, see the Handling Exceptions section of the <a href="http://doc.revactor.org/files/README.html">Revactor <span class="caps">README</span></a>.</p>
+<p>Revactor is available as a gem (Ruby 1.9 only):</p>
+<p><em>gem install revactor</em></p>
+  
+</div>
+
+<div class="entry">
+  <h3><a href="/blog/archives/2008/01/21/revactor-released/">Revactor released</a></h3>
+  <p class="info">Posted by Tony Arcieri on Jan 21, 2008</p>
+  <p>I&#8217;m pleased to announce the initial public availability of Revactor, an Actor framework for Ruby 1.9.  The Actor model has seen increasing popularity in languages like Erlang and Scala.  Revactor adds asynchronous message passing to the Fibers mechanism, easing the development of concurrent programs using them.  You can read more about the Actor model here:</p>
+<p><a href="http://revactor.org/philosophy/">http://revactor.org/philosophy/</a></p>
+<p>Revactor also includes a high performance sockets <span class="caps">API</span>, largely compatible with Ruby&#8217;s own, but which also seamlessly interoperate with the Actor <span class="caps">API</span>.  Using this approach means you can simultaneously process messages from both sockets and other Actors.  Furthermore, with a small amount of monkeypatching it&#8217;s able to run Mongrel, using Actors instead of threads as the underlying concurrency mechanism.  Initial tests of the performance of Mongrel on top of Revactor surpass the threaded version.</p>
+<p>Revactor is available as a gem and can be installed with:</p>
+<p><em>gem install revactor</em></p>
+  
+</div>
+
+
+
+            
+            
+          </div>
+        </div>
+      </div>
+      <div id="footer">
+  Copyright &copy; 2008 Tony Arcieri &mdash; All rights reserved.
+</div>
+    </div>
+  </body>
+</html>

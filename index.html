@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+  <head>
+    <title>Revactor</title>
+    <link href="/rss/" rel="alternate" title="RSS" type="application/rss+xml" />
+    <link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+  <body>
+    <div id="page">
+      <div id="header">
+  <h1><a href="/"><span>Revactor</span></a></h1>
+  <h2>Network programming for a concurrent world</h2>
+</div>
+      <div id="main">
+        <div id="sidebar-wrapper">
+          <div id="sidebar">
+            <div><a href="/">About</a></div>
+<div><a href="/philosophy">Philosophy</a></div>
+<div><a href="http://doc.revactor.org/files/README.html">Documentation</a></div>
+<div><a href="http://rubyforge.org/mailman/listinfo/revactor-talk">Mailing List</a></div>
+<div><a href="/blog">Blog</a></div>
+<div><a href="/download">Download</a></div>
+          </div>
+        </div>
+
+        <div id="content-wrapper">
+          <div id="content">
+            
+            <h2>About</h2>
+<p>Revactor is an application framework for Ruby which uses the Actor model to simplify the creation of high-performance network services.</p>
+<p>Writing concurrent systems is one of the most difficult problems facing programmers today. Working with threads is difficult, and asynchronous approaches are confusing and difficult to work with.</p>
+<p>Actors simplify concurrent programming by eliminating the race conditions and deadlocks of threads as well as the inversion of control in asynchronous APIs. Furthermore, each Actor has a mailbox, making communication between Actors incredibly simple.</p>
+<p>Revactor&#8217;s <span class="caps">TCP</span> sockets <span class="caps">API</span> is virtually identical to Ruby&#8217;s, meaning that porting programs from Ruby to Revactor is a snap.  While underneath it achieves high scalability by using non-blocking I/O, Actors can make blocking calls to read and write from sockets, or even make entire <span class="caps">HTTP</span> requests and read responses.  If you want to use asynchronous I/O for tasks like message processing, you can also have network events delivered directly to Actors as a message.</p>
+<p>Revactor incorporates ideas similar to many other languages and frameworks, including <a href="http://erlang.org">Erlang</a>, <a href="http://scala-lang.org">Scala</a> and <a href="http://python.org">Python</a> frameworks like <a href="http://wiki.secondlife.com/wiki/Eventlet">Eventlet</a> and <a href="http://kamaelia.sourceforge.net/Home">Kamaelia</a>.</p>
+            
+            
+          </div>
+        </div>
+      </div>
+      <div id="footer">
+  Copyright &copy; 2008 Tony Arcieri &mdash; All rights reserved.
+</div>
+    </div>
+  </body>
+</html>

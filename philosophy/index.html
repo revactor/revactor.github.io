@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+  <head>
+    <title>Philosophy</title>
+    <link href="/rss/" rel="alternate" title="RSS" type="application/rss+xml" />
+    <link rel="stylesheet" type="text/css" href="/styles.css" />
+  </head>
+  <body>
+    <div id="page">
+      <div id="header">
+  <h1><a href="/"><span>Revactor</span></a></h1>
+  <h2>Network programming for a concurrent world</h2>
+</div>
+      <div id="main">
+        <div id="sidebar-wrapper">
+          <div id="sidebar">
+            <div><a href="/">About</a></div>
+<div><a href="/philosophy">Philosophy</a></div>
+<div><a href="http://doc.revactor.org/files/README.html">Documentation</a></div>
+<div><a href="http://rubyforge.org/mailman/listinfo/revactor-talk">Mailing List</a></div>
+<div><a href="/blog">Blog</a></div>
+<div><a href="/download">Download</a></div>
+          </div>
+        </div>
+
+        <div id="content-wrapper">
+          <div id="content">
+            <h2>Philosophy</h2>
+            <h3>Actors</h3>
+<p><img src="/images/bette.jpg" alt="" /> <img src="/images/george.jpg" alt="" /> <img src="/images/greta.jpg" alt="" /> <img src="/images/rudolph.jpg" alt="" /> <img src="/images/marilyn.jpg" alt="" /></p>
+<p>What are Actors?  Well, they&#8217;re kind of like threads, with messaging baked-in.  But in many ways, they&#8217;re more like objects, because they hold state and communicate using messages.  They&#8217;re kinda like&#8230; threabjects&#8230; or objeads.  But for the non-kindergardners among us, Actors are a good enough name.</p>
+<p>Actors are an approach to concurrency which has proven remarkably successful in languages like <a href="http://erlang.org/">Erlang</a> and <a href="http://www.scala-lang.org/">Scala</a>.  They emphasize message passing as the only means of exchanging state, as opposed to threaded approaches like mutexes, conditions, and semaphores which hopefully guard access and mutation of any shared state, emphasis on the hopefully.  Using messaging eliminates several problems in multithreaded programming, including many types of race conditions and deadlocks which result from hope dying in the cold light of reality.</p>
+<p>The basic operation of an Actor is easy to understand: like a thread, it runs concurrently with other Actors.  However, unlike threads it is not pre-emptable.  Instead, each Actor has a mailbox and can call a routine named &#8220;receive&#8221; to check its mailbox for new messages.  The &#8220;receive&#8221; routine takes a filter, and if no messages in an Actor&#8217;s mailbox matches the filter, the Actor sleeps until it receives new messages, at which time it&#8217;s rescheduled for execution.</p>
+<p>Well, that&#8217;s a bit of a naive description.  In reality the important part about Actors is that they cannot mutate shared state simultaneously.  That means there are no race conditions or deadlocks because there are no mutexes, conditions, and semaphores, only messages and mailboxes.</p>
+<p>Because Actors sleep while waiting for interesting events to occur and show up in their mailbox, they can easily be used in the same way as blocking I/O operations in a traditional program.  Every <span class="caps">TCP</span> socket created through the Revactor <span class="caps">API</span> has read and write methods which work just like the ones in the traditional Ruby Socket <span class="caps">API</span>.  The Actor socket just requests that it be notified when socket events occur, then sleeps until they happen.</p>
+<p>However, Actors aren&#8217;t just intended as just a drop-in replacement for traditional Ruby sockets.  They allow you to start structuring your programs as networks of interconnected components which communicate using message passing.  This approach to structuring your programs is extremely powerful, as it facilitates a simple and lock-free way to build services that allow concurrent access to complex data structures.<br />
+<br/></p>
+<h3>Mailboxes</h3>
+<p><img src="/images/normal.jpg" alt="" /> <img src="/images/gator.jpg" alt="" /> <img src="/images/pantless.jpg" alt="" /> <img src="/images/weird.jpg" alt="" /> <img src="/images/rss.jpg" alt="" /></p>
+<p>That guy asks: &#8220;Okay, sure, I&#8217;ve used interthread message queues before.  So what&#8217;s the big freakin&#8217; deal?&#8221;</p>
+<p>Threads that communicate with messages are a great start to building robust concurrent programs.  But how well have you thought through how you receive messages?</p>
+<p>Actors give you a mailbox and a toolbox to apply filters to it.  This assures that the present operation only consumes messages it&#8217;s interested in and other operations can run in the background, sending you messages to inform you of the present status.  Those message linger in the mailbox until they&#8217;re ready to be acted upon.</p>
+<p>This means tons of events can be flying around in the background.  When they complete, they just send the interested Actor a message.  The mailbox provides a simple way of synchronizing all that concurrency flying around in the background and operating on it based on what&#8217;s in your mailbox.</p>
+<p>If that idea doesn&#8217;t slap you in the face and scream &#8220;<span class="caps">DUH</span>!&#8221;, I suggest you watch the eerily related video <a href="http://www.youtube.com/watch?v=0klgLsSxGsU"><span class="caps">RSS</span> in Plain English</a>.  If you&#8217;re a traditional threaded programmer, your threads go all over the place to access and mutate data.  But this process is cumbersome, error-prone, and wastes valuable time.  How many times do you have to make sure your mutexes, conditions, and semaphores have been implemented correctly, and how many times have you debugged deadlocks when using these concurrency primitves?  It&#8217;s annoying and tedious&#8230;</p>
+<p>Like e-mail, or <span class="caps">RSS</span>, Actors give you a mailbox: a one-stop shop where everything of interest shows up.  Actors apply filters to their mailbox to find the items they&#8217;re presently interested in.    Is this sounding eerily familiar to the e-mail and <span class="caps">RSS</span> addicts out there in Intarweb land?  How many times a day does your brain call &#8220;receive&#8221;?</p>
+<p>I&#8217;m sure most people reading this realize what things like e-mail and <span class="caps">RSS</span> did to your life.  Imagine what it could do to your concurrent programs&#8230;<br />
+<br/></p>
+<h3>Filters</h3>
+<p><img src="/images/light.jpg" alt="" /> <img src="/images/water.jpg" alt="" /> <img src="/images/coffee.jpg" alt="" /> <img src="/images/cigarette.jpg" alt="" /> <img src="/images/air.jpg" alt="" /></p>
+<p>An important part of using a mailbox to synchronize concurrency is being able to filter only what you&#8217;re immediately interested in and leave the rest around to handle at a later time.  In order to do that you need to be able to effectively filter the messages sitting in your mailbox.</p>
+<p>Ruby provides some powerful tools for filtering data.  One of these is the = expression.  You may have never used it directly, but you've probably used it indirectly, such as writing a case statement.  Ruby uses the = expression to match against every case in a case expression.  You can use it to compare a regular expression against a string.  You can use it to compare a class against an object to determine if it&#8217;s an instance of that class.  And you can use it for a lot more&#8230;</p>
+<p>Revactor uses the Case gem (written by <a href="http://moonbase.rydia.net/">MenTaLguY</a>) to perform comparisons on collections.  This means that you can extend the = expression to multiple members of an array (or tuple).  Revactor's filter can take a Case expression with a list of members to compare against, ala Case[:foo, :bar, :baz].  This is great if you want to match a specific list of terms, but what if you want to match a list with wildcards for certain members?  Well, since = compares case, you can always use Object as a wildcard, because everything is an Object in Ruby.  So Case[:foo, Object, Object] will also match[:foo, :bar, :baz] with ===, and thus with the Filter object.</p>
+<p>Perhaps === isn&#8217;t enough?  Do you have some complex criteria to match against?  Well, the Case gem includes a Case::Predicate matcher.  This takes a block, passes the block the member in question evaluates it for truthiness, and returns the result.<br />
+<br/></p>
+<h3>Conclusion</h3>
+<p>Actors rule.  You really should use them in your programs.  Especially if your programs do a lot of stuff at once.  Seriously, whatever you&#8217;re doing besides Actors, it probably sucks.  Actors are this awesome panacea that will make it all better, I swear.  In conclusion: use them, do it!</p>
+            
+            <div id="extended">
+              
+            </div>
+            
+            
+          </div>
+        </div>
+      </div>
+      <div id="footer">
+  Copyright &copy; 2008 Tony Arcieri &mdash; All rights reserved.
+</div>
+    </div>
+  </body>
+</html>
